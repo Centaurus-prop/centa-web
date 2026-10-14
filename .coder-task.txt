@@ -1,0 +1,45 @@
+You are the Coder agent fixing issues found by the Reviewer in the Centa Web codebase.
+
+PROJECT: H:\Calcuta\centa-web
+
+FIX THESE ISSUES (in priority order):
+
+## CRITICAL
+
+### 1. property-features.tsx — "Estado" shows category instead of status
+File: src/components/organisms/property-features.tsx
+Line 14 shows `categoryLabels[property.categoria]` under label "Estado" — but that shows the CATEGORY (usado/a-estrenar/emprendimiento), not the STATUS (disponible/reservado/vendido).
+FIX: Change line 14 to show `property.estado` (with a label map: disponible->"Disponible", reservado->"Reservado", vendido->"Vendido"). Also add the category as a separate row labeled "Categoría".
+
+### 2. properties.ts — No try/catch on Tokko fetch
+File: src/lib/properties.ts, function `fetchTokkoProperties()`
+If Tokko API returns non-JSON or network errors, the entire page crashes instead of falling back to mock data.
+FIX: Wrap the fetch + JSON parse in try/catch. On any error, return null (triggers mock fallback).
+
+### 3. next.config.ts — Whitelist Tokko image host
+File: next.config.ts
+Tokko images come from their CDN but aren't whitelisted in next.config.ts images config.
+FIX: Add images.remotePatterns entry. Check what domain Tokko uses from the code (the image URLs in mock data or the API). Add the pattern. Keep unoptimized prop on next/image for external images.
+
+## DATA MAPPING
+
+### 4. operacion lost when no price
+File: src/lib/properties.ts, function `getOperationPrice()`
+If an operation has no price, the operation type (Venta/Alquiler) is lost.
+FIX: Even if no price, extract and return the operation type from the first operation.
+
+### 5. Superficie shows roofed instead of total
+File: src/lib/properties.ts, `mapTokkoProperty`
+The m2 field uses `raw.roofed_surface ?? raw.total_surface` — roofed surface is usually smaller.
+FIX: Prefer `total_surface` first, then fall back to `roofed_surface`, then `surface`.
+
+### 6. ambientes fallback to suites
+File: src/lib/properties.ts, `mapTokkoProperty`
+`normalizeNumber(raw.room_amount ?? raw.suite_amount, 1)` — suite_amount is not the same as room_amount.
+FIX: Remove the suite_amount fallback. Use `room_amount` only, with fallback 0.
+
+## INSTRUCTIONS
+- Read each file before editing
+- Make minimal, targeted changes
+- Run `npm run build` after all fixes to verify
+- Report what you changed and the build result

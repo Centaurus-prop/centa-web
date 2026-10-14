@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 110" fill="none">
+  <!-- Pieza grande: romboide inclinado (izquierda/arriba) -->
+  <polygon points="8,100 8,28 62,4 62,68" fill="#AAEA4E"/>
+  <!-- Pieza chica: cuadrado (abajo/derecha) -->
+  <rect x="68" y="62" width="26" height="38" fill="#AAEA4E"/>
+</svg>

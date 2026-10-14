@@ -1,0 +1,8 @@
+<svg width="1200" height="675" viewBox="0 0 1200 675" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="675" fill="#F2F5F3"/>
+  <rect x="230" y="176" width="740" height="323" rx="24" fill="#D8E6DE"/>
+  <path d="M352 417L512 290L640 385L736 321L848 417" stroke="#2A5C50" stroke-width="28" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="459" cy="276" r="44" fill="#E7FF2D"/>
+  <path d="M410 478H790" stroke="#2A5C50" stroke-width="28" stroke-linecap="round"/>
+  <text x="50%" y="590" text-anchor="middle" fill="#2A5C50" font-family="Arial, sans-serif" font-size="42" font-weight="700">CENTA · Propiedad</text>
+</svg>
